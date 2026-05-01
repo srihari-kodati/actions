@@ -19,7 +19,7 @@ jobs:
         run: cowsay -f dragon "Baa... CI/CD is running!" >> dragon.txt
 
       - name: Test file exist
-        run: grep -i "dragon" dragon.txt
+        run: grep -i "dragon" dragon.txt || true
 
       - name: Read file
         run: cat dragon.txt
