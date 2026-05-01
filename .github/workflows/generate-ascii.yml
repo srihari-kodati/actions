@@ -15,14 +15,14 @@ jobs:
       - name: Install Cowsay Program
         run: sudo apt-get install cowsay -y
 
-      - name: Generate Sheep
-        run: cowsay -f sheep "Baa... CI/CD is running!" >> sheep.txt
+      - name: Generate dragon
+        run: cowsay -f dragon "Baa... CI/CD is running!" >> dragon.txt
 
       - name: Test file exist
-        run: grep -i "sheep" sheep.txt
+        run: grep -i "dragon" dragon.txt
 
       - name: Read file
-        run: cat sheep.txt
+        run: cat dragon.txt
 
       - name: List files
         run: ls -ltra
