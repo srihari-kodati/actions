@@ -6,22 +6,23 @@ on:
 jobs:
     ascii_job:
 
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout
-          run: actions/checkout@v6
+      runs-on: ubuntu-latest
+      steps:
 
-        - name: Install Cowsay Program
-          run: sudo apt-get install cowsay -y
+      - name: Checkout Repo
+        uses: actions/checkout@v6
 
-        - name: Generate Sheep
-          run: cowsay -f sheep "Baa... CI/CD is running!" >> sheep.txt
+      - name: Install Cowsay Program
+        run: sudo apt-get install cowsay -y
 
-        - name: Test file exist
-          run: grep -i "sheep" sheep.txt
+      - name: Generate Sheep
+        run: cowsay -f sheep "Baa... CI/CD is running!" >> sheep.txt
 
-        - name: Read file
-          run: cat sheep.txt
+      - name: Test file exist
+        run: grep -i "sheep" sheep.txt
 
-        - name: List files
-          run: ls -ltra
+      - name: Read file
+        run: cat sheep.txt
+
+      - name: List files
+        run: ls -ltra
