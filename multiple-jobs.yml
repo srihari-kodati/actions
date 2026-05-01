@@ -1,7 +1,7 @@
 name: Multiple jobs
 
 on:
-  workflow_dispatch
+  push
 
 jobs:
   build_job:
@@ -15,7 +15,7 @@ jobs:
  
         - name: Sleep for 30 Seconds
           run: sleep 30
-          
+
   test_job:
       runs-on: ubuntu-latest
       steps:
