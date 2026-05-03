@@ -1,0 +1,29 @@
+name: Job Concurrency
+
+on: 
+    workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Docker Build
+      run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
+      
+    - name: Docker login
+      run: docker login --username=${{ vars.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Docker Publish
+      run: echo docker push $CONTAINER_REGISTRY/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
+
+  deploy:
+    needs: docker
+    concurrency:
+      group: prod-deploy
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+    - name: Docker Run
+      run: |
+        echo docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
+        sleep 30s
