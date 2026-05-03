@@ -18,7 +18,7 @@ jobs:
     - name: Docker Publish
       run: |
        echo docker push $CONTAINER_REGISTRY/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
-       sleep 30s
+       
 
   deploy:
     needs: docker
@@ -31,3 +31,4 @@ jobs:
       timeout-minutes: 1
       run: |
         echo docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
+        sleep 60s
