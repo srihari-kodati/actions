@@ -5,7 +5,7 @@ on:
 
 jobs:
   docker:
-    
+
     runs-on: ubuntu-latest
     steps:
     - name: Docker Build
@@ -27,4 +27,4 @@ jobs:
     - name: Docker Run
       run: |
         echo docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
-        sleep 30s
+        sleep 300s
